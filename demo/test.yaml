@@ -1,0 +1,96 @@
+swagger: "2.0"
+info:
+  title: "ブログバックエンドAPI"
+  version: "0.1.0"
+host: "api.hozi.dev"
+basePath: "/v1"
+schemes:
+  - "https"
+tags:
+  - name: "Article"
+    description: "記事に関する操作"
+paths:
+  /article:
+    get:
+      tags:
+        - "Article"
+      summary: "記事一覧を取得"
+      security:
+        - tokenAuth: []
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "type"
+          required: true
+          enum: ["tech", "gaget", "life"]
+          description: "記事タイプ"
+      responses:
+        200:
+          description: "成功"
+          schema:
+            type: "object"
+            properties:
+              articles:
+                type: "array"
+                items:
+                  $ref: "#/definitions/article"
+  /article/{articleId}:
+    get:
+      tags:
+        - "Article"
+      summary: "記事詳細を取得"
+      security:
+        - tokenAuth: []
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "articleId"
+          required: true
+          enum: ["01esxf9w62kx10wfbg8888pqrp"]
+      responses:
+        200:
+          description: "成功"
+          schema:
+            $ref: "#/definitions/article"
+        404:
+          description: "記事が存在しない"
+definitions:
+  article:
+      required:
+        - "articleId"
+        - "content"
+        - "title"
+        - "type"
+        - "category"
+        - "publishAt"
+        - "updateAt"
+        - "createAt"
+      type: "object"
+      properties:
+        articleId:
+          type: "string"
+          example: "01esxf9w62kx10wfbg8888pqrp"
+        content:
+          type: "string"
+          example: "# h1"
+        title:
+          type: "string"
+          example: "ブログリニューアル"
+        type:
+          type: "string"
+          enum: ["tech", "gaget", "life"]
+          example: "tech"
+        category: 
+          type: "string"
+          example: ["typescript"]
+        createAt:
+          type: "number"
+          example: 160915346897
+        updateAt:
+          type: "number"
+          example: 160915346897
+        publishAt:
+          type: "number"
+          example: 160915346897
