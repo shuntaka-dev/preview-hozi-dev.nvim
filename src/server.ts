@@ -1,12 +1,12 @@
 import * as http from 'http';
 
-import socketio from 'socket.io';
+import { Server } from 'socket.io';
 
 import { getModuleLogger } from './util/logger';
 import { initPlugin } from './nvim';
 import { openBrowser } from './util/open-browser';
 import { routes } from './route';
-import { parseSwaggerContent } from './util/swagger-ui';
+import * as ConvertHtml from './util/convert-html';
 
 const logger = getModuleLogger();
 
@@ -22,24 +22,25 @@ const main = async (): Promise<void> => {
   let port = defaultPort;
 
   const plugin = await initPlugin();
-  const pswagLunchIp = await plugin.nvim.getVar('pswag_lunch_ip');
-  const pswagLunchPort = await plugin.nvim.getVar('pswag_lunch_port');
+  const hozidevLunchIp = await plugin.nvim.getVar('hozidev_lunch_ip');
+  const hozidevLunchPort = await plugin.nvim.getVar('hozidev_lunch_port');
 
-  if (pswagLunchIp != null) host = pswagLunchIp as string;
-  if (pswagLunchPort != null) port = pswagLunchPort as number;
+  if (hozidevLunchIp != null) host = hozidevLunchIp as string;
+  if (hozidevLunchPort != null) port = hozidevLunchPort as number;
 
-  await plugin.nvim.setVar('pswag_lunch_ip', host);
-  await plugin.nvim.setVar('pswag_lunch_port', port);
+  await plugin.nvim.setVar('hozidev_lunch_ip', host);
+  await plugin.nvim.setVar('hozidev_lunch_port', port);
 
   const connections: { [key: number]: string[] } = {};
-  const io = socketio(server);
-  io.on('connection', async socket => {
+
+  const io = new Server(server);
+  io.on('connection', async (socket) => {
     const bufnr = (await plugin.nvim.call('bufnr', '%')) as number;
     connections[bufnr]
       ? connections[bufnr].push(socket.id)
       : (connections[bufnr] = [socket.id]);
     logger.debug(`connected: ${JSON.stringify(connections)}`);
-    await plugin.nvim.call('pswag#rpc#refresh_content');
+    await plugin.nvim.call('hozidev#rpc#refresh_content');
 
     socket.on('disconnect', () => {
       logger.debug('disconnected');
@@ -51,59 +52,29 @@ const main = async (): Promise<void> => {
     host,
     async (): Promise<void> => {
       plugin.init({
-        openBrowser: async url => {
+        openBrowser: async (url) => {
           openBrowser(url);
         },
-        refreshContent: async bufnr => {
+        refreshContent: async (bufnr) => {
           const fileFullPath = await plugin.nvim.call('expand', '%:p');
           const bufferRows = await plugin.nvim.buffer.getLines();
-          const parseSwaggerContentResponse = parseSwaggerContent({
+          const html = ConvertHtml.convertHoziDevContent({
             bufferRows: bufferRows,
             fileFullPath: fileFullPath,
           });
-
-          if (
-            !connections[bufnr] ||
-            !parseSwaggerContentResponse.swaggerContent
-          ) {
-            logger.debug(
-              `refresh faild for connections: ${connections[bufnr]}`,
-            );
-            logger.debug(
-              `refresh faild for swaggerContent: ${parseSwaggerContentResponse.swaggerContent}`,
-            );
-            return;
-          }
-
-          if (!parseSwaggerContentResponse.isError) {
-            connections[bufnr].forEach(id => {
-              logger.debug(`refresh_content:${id}`);
-              io.to(id).emit(
-                'clear_error',
-                parseSwaggerContentResponse.swaggerContent,
-              );
-              io.to(id).emit(
-                'refresh_content',
-                parseSwaggerContentResponse.swaggerContent,
-              );
-            });
-          } else {
-            logger.debug(`emit errmsg`);
-            connections[bufnr].forEach(id => {
-              io.to(id).emit(
-                'parse_error',
-                parseSwaggerContentResponse.errMessage,
-              );
-            });
-          }
+          connections[bufnr].forEach((id) => {
+            logger.debug(`refresh_content:${id}`);
+            io.to(id).emit('clear_error', html);
+            io.to(id).emit('refresh_content', html);
+          });
         },
       });
 
-      plugin.nvim.call('pswag#rpc#open_browser');
+      plugin.nvim.call('hozidev#rpc#open_browser');
     },
   );
 };
 
 main()
   .then(() => logger.debug('process finish'))
-  .catch(err => logger.debug(`process error: ${err}`));
+  .catch((err) => logger.debug(`process error: ${err}`));

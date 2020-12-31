@@ -18,14 +18,14 @@ export interface Plugin {
 export async function createPlugin(options: Attach): Promise<Plugin> {
   const nvim: NeovimClient = attach(options);
   const channelId = await nvim.channelId;
-  await nvim.setVar('pswag_node_channel_id', channelId);
+  await nvim.setVar('hozidev_node_channel_id', channelId);
 
   let action: Action;
   nvim.on('notification', async (method: string, args: any[]) => {
     if (method === 'open_browser') {
       logger.debug(`call method: ${method}`);
-      const host = await nvim.getVar('pswag_lunch_ip');
-      const port = await nvim.getVar('pswag_lunch_port');
+      const host = await nvim.getVar('hozidev_lunch_ip');
+      const port = await nvim.getVar('hozidev_lunch_port');
       const bufnr = await nvim.call('bufnr', '%');
 
       action.openBrowser(`http://${host}:${port}/page/${bufnr}`);

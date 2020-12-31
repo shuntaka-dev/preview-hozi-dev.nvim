@@ -8,10 +8,10 @@ const MAX_LOG_SIZE = 1024 * 1024;
 const MAX_LOG_BACKUPS = 10;
 const LOG_LEVEL = process.env.NVIM_PSWAG_LOG_LEVEL || 'info';
 const LOG_FILE_PATH =
-  process.env.NVIM_PSWAG_LOG_FILE || path.join(os.tmpdir(), 'pswag');
+  process.env.NVIM_PSWAG_LOG_FILE || path.join(os.tmpdir(), 'hozidev');
 
 export function getModuleLogger(): Logger {
-  const logName = 'pswag';
+  const logName = 'hozidev';
 
   if (LOG_LEVEL === 'debug') {
     fs.writeFileSync(LOG_FILE_PATH, '', 'utf8');

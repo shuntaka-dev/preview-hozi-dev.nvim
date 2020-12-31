@@ -9,19 +9,22 @@ export async function initPlugin(): Promise<Plugin> {
     socket: address,
   });
 
-  const MSG_PREFIX = '[pswag.vim]';
+  const MSG_PREFIX = '[hozidev.vim]';
 
-  process.on('uncaughtException', function(err) {
+  process.on('uncaughtException', function (err) {
     const msg = `${MSG_PREFIX} uncaught exception: ` + err.stack;
     if (plugin.nvim) {
-      plugin.nvim.call('pswag#util#echo_messages', ['Error', msg.split('\n')]);
+      plugin.nvim.call('hozidev#util#echo_messages', [
+        'Error',
+        msg.split('\n'),
+      ]);
     }
     logger.error('uncaughtException', err.stack);
   });
 
-  process.on('unhandledRejection', function(reason, p) {
+  process.on('unhandledRejection', function (reason, p) {
     if (plugin.nvim) {
-      plugin.nvim.call('pswag#util#echo_messages', [
+      plugin.nvim.call('hozidev#util#echo_messages', [
         'Error',
         [`${MSG_PREFIX} UnhandledRejection`, `${reason}`],
       ]);

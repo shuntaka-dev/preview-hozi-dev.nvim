@@ -1,6 +1,6 @@
 function! s:start_plugin() abort
-  call pswag#autocmd#init()
-  command! -buffer SwaggerPreview call pswag#util#preview_swag()
+  call hozidev#autocmd#init()
+  command! -buffer HoziDevPreview call hozidev#util#preview_hozidev()
 endfunction
 
 function! s:init() abort
@@ -8,7 +8,7 @@ function! s:init() abort
 endfunction
 
 if !has('nvim')
-  call pswag#util#echo_messages('Error', 'only supported by neovim')
+  call hozidev#util#echo_messages('Error', 'only supported by neovim')
   finish
 endif
 call s:init()

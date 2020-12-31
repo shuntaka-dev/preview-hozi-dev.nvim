@@ -3,7 +3,6 @@ import * as path from 'path';
 
 import { getModuleLogger } from './util/logger';
 
-const logger = getModuleLogger();
 const routeList = [];
 
 const use = (route: any): void => {

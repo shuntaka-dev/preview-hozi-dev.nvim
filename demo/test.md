@@ -5,24 +5,13 @@ category: []
 publish: true
 ---
 
-# はじめに
-Next.jsでブログリニューアルしました！
 
-# 動機
-今までHugoで本サイトとは別のドメインで運用していました。Next.jsが流行っているので、これを機会に乗り換えました。デザインは悩んだ、アクセシビリティとか私自身知見がなく、これを機に学びたい。
+```go
+const s string ="constant"
 
-# 覚え書き
-## ISR
-初めはgetStaticPropsで、ディレクトリからマークダウンファイル一覧を取得してSSG。
-
-```typescript
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const articleFilePath = path.join(
-    config.localArticleDir,
-    `${params.articleId}${config.mdExt}`,
-  );
-  const articleFile = fs.readFileSync(articleFilePath);
-  ...
+func main () {
+  fmt.Println('Hello World')
+}
 ```
 
 SSGだと、マークダウンを更新する度にデプロイが必要なのでISRへ変更。マークダウンはDynamoDBに突っ込んでAPI Gatewayで配信、ISR時にAPIを叩くようにした。
