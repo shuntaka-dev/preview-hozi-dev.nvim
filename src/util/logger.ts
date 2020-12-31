@@ -6,9 +6,9 @@ import log4js, { Logger } from 'log4js';
 
 const MAX_LOG_SIZE = 1024 * 1024;
 const MAX_LOG_BACKUPS = 10;
-const LOG_LEVEL = process.env.NVIM_PSWAG_LOG_LEVEL || 'info';
+const LOG_LEVEL = process.env.NVIM_HOZI_DEV_LOG_LEVEL || 'info';
 const LOG_FILE_PATH =
-  process.env.NVIM_PSWAG_LOG_FILE || path.join(os.tmpdir(), 'hozidev');
+  process.env.NVIM_HOZI_DEV_LOG_FILE || path.join(os.tmpdir(), 'hozidev');
 
 export function getModuleLogger(): Logger {
   const logName = 'hozidev';

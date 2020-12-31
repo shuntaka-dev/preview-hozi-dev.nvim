@@ -2,16 +2,55 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <link href="https://raw.githack.com/hozi-dev/hozi-dev-content-css/master/lib/index.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css" />
 <script>
   $(function () {
     var socket = io();
     socket.on('refresh_content', function(msg){
-      $('.hozi-dev-article-content').html(msg)
+      $('.title').html(msg.title)
+      $('.hozi-dev-article-content').html(msg.content)
     });
   });
 </script>
+<style>
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  color: rgba(0, 0, 0, 0.82);
+  word-break: break-word;
+  word-wrap: break-word;
+  font-family:  -apple-system, "Segoe UI", "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;;
+}
+
+.editor {
+  display: flex;
+  justify-content: center;
+}
+
+.hozi-dev-article-content {
+  max-width: 70%;
+}
+
+.title {
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 48px;
+}
+
+</style>
 <html>
   <body>
-    <div class="hozi-dev-article-content"></div>
+    <div class="title"></div>
+    <hr>
+    <br>
+    <div class="editor">
+      <div class="hozi-dev-article-content">
+      </div>
+    </div>
   </body>
 </html>

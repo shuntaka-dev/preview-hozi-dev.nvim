@@ -94,14 +94,17 @@ const convertHtmlFromMarkdown = (markdownString: string): string => {
 
 export const convertHoziDevContent = (
   convertSwaggerJsonPrameter: ConvertSwaggerJsonPrameter,
-): string => {
+): { title: string; content: string } => {
   try {
     const buffer = convertSwaggerJsonPrameter.bufferRows.join('\n');
 
     const markdownExcludeMatter = matter(buffer);
     const html = convertHtmlFromMarkdown(markdownExcludeMatter.content);
 
-    return html;
+    return {
+      title: markdownExcludeMatter.data.title,
+      content: html,
+    };
   } catch (e) {
     throw new Error();
   }

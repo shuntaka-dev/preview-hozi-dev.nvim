@@ -64,7 +64,8 @@ const main = async (): Promise<void> => {
           });
           connections[bufnr].forEach((id) => {
             logger.debug(`refresh_content:${id}`);
-            io.to(id).emit('clear_error', html);
+            logger.debug(`get_html;${html}`);
+
             io.to(id).emit('refresh_content', html);
           });
         },
