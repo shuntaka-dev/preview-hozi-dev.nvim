@@ -10,7 +10,7 @@ const LOG_LEVEL = process.env.NVIM_HOZI_DEV_LOG_LEVEL || 'info';
 const LOG_FILE_PATH =
   process.env.NVIM_HOZI_DEV_LOG_FILE || path.join(os.tmpdir(), 'hozidev');
 
-export function getModuleLogger(): Logger {
+export const getModuleLogger = (): Logger => {
   const logName = 'hozidev';
 
   if (LOG_LEVEL === 'debug') {
@@ -42,4 +42,4 @@ export function getModuleLogger(): Logger {
   }
 
   return log4js.getLogger(logName);
-}
+};

@@ -18,19 +18,20 @@ export class OpenBrowserUnsupportedPlatformError extends OpenBrowserError {
   }
 }
 
-export async function openBrowser(url: string): Promise<void> {
+export const openBrowser = (url: string): void => {
   const platform = process.platform;
   const args = [];
   args.push(url);
 
-  let executeCmd = '';
-  if (platform === 'darwin') {
-    executeCmd = 'open';
-  } else {
-    throw new OpenBrowserUnsupportedPlatformError(platform);
-  }
+  const executeCmd = (() => {
+    if (platform === 'darwin') {
+      return 'open';
+    } else {
+      throw new OpenBrowserUnsupportedPlatformError(platform);
+    }
+  })();
 
   childProcess.spawn(executeCmd, args, {
     detached: true,
   });
-}
+};

@@ -1,0 +1,29 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  color: rgba(0, 0, 0, 0.82);
+  word-break: break-word;
+  word-wrap: break-word;
+  font-family:  -apple-system, "Segoe UI", "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;;
+}
+
+.editor {
+  display: flex;
+  justify-content: center;
+}
+
+.hozi-dev-article-content {
+  max-width: 70%;
+  min-width: 70%;
+}
+
+.title {
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 48px;
+}

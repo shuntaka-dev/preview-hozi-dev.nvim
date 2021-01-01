@@ -15,20 +15,19 @@ export interface Plugin {
   nvim: NeovimClient;
 }
 
-export async function createPlugin(options: Attach): Promise<Plugin> {
+export const createPlugin = async (options: Attach): Promise<Plugin> => {
   const nvim: NeovimClient = attach(options);
   const channelId = await nvim.channelId;
   await nvim.setVar('hozidev_node_channel_id', channelId);
 
   let action: Action;
-  nvim.on('notification', async (method: string, args: any[]) => {
+  nvim.on('notification', async (method: string) => {
     if (method === 'open_browser') {
       logger.debug(`call method: ${method}`);
       const host = await nvim.getVar('hozidev_lunch_ip');
       const port = await nvim.getVar('hozidev_lunch_port');
-      const bufnr = await nvim.call('bufnr', '%');
 
-      action.openBrowser(`http://${host}:${port}/page/${bufnr}`);
+      action.openBrowser(`http://${host}:${port}`);
     } else if (method === 'refresh_content') {
       const bufnr = await nvim.call('bufnr', '%');
       logger.debug(`call method: ${method}, bufnr: ${bufnr}`);
@@ -42,4 +41,4 @@ export async function createPlugin(options: Attach): Promise<Plugin> {
     },
     nvim: nvim,
   };
-}
+};

@@ -2,3 +2,7 @@ node_modules
 lib
 coverage
 preview
+app
+out
+.next
+.DS_Store

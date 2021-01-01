@@ -1,11 +1,11 @@
 import { getModuleLogger } from './util/logger';
-import { createPlugin, Plugin } from './attach';
+import * as attach from './attach';
 
 const address = process.env.NVIM_LISTEN_ADDRESS || '/tmp/nvim';
 const logger = getModuleLogger();
 
-export async function initPlugin(): Promise<Plugin> {
-  const plugin: Plugin = await createPlugin({
+export const initPlugin = async (): Promise<attach.Plugin> => {
+  const plugin: attach.Plugin = await attach.createPlugin({
     socket: address,
   });
 
@@ -33,4 +33,4 @@ export async function initPlugin(): Promise<Plugin> {
   });
 
   return plugin;
-}
+};

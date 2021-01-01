@@ -2,7 +2,7 @@ let g:hozidev_root_dir = expand('<sfile>:h:h:h')
 
 function! hozidev#util#job_command()
   let node_path = get(g:, 'hozidev_node_path', 'node') 
-  return [node_path] + [g:hozidev_root_dir . '/app/lib/server.js']
+  return [node_path] + [g:hozidev_root_dir . '/app/server.js']
 endfunction
 
 function! hozidev#util#echo_messages(hl, msgs)
