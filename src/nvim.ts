@@ -11,7 +11,16 @@ export const initPlugin = async (): Promise<attach.Plugin> => {
 
   const MSG_PREFIX = '[hozidev.vim]';
 
-  process.on('uncaughtException', function (err) {
+  process.on('uncaughtException', (err) => {
+    logger.debug('err.name:' + err.name);
+    logger.debug('err!!!:' + JSON.stringify(err));
+    logger.debug('message!!!:' + JSON.stringify(err.message));
+
+    if (err.message.indexOf('EADDRINUSE') > -1) {
+      logger.debug('TODO rerequest start server');
+      // TODO NVIM側にサーバーリスタート再送要求
+    }
+
     const msg = `${MSG_PREFIX} uncaught exception: ` + err.stack;
     if (plugin.nvim) {
       plugin.nvim.call('hozidev#util#echo_messages', [

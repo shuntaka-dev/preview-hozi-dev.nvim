@@ -41,7 +41,7 @@ const main = async (): Promise<void> => {
   })();
   const port = await (async () => {
     const hozidevLunchPort = await plugin.nvim.getVar(lunchPortVimValue);
-    return hozidevLunchPort ?? defaultPort;
+    return hozidevLunchPort != null ? Number(hozidevLunchPort) : defaultPort;
   })();
   const pluginRootDir = (await plugin.nvim.getVar(
     pluginRootVimValue,
@@ -50,7 +50,6 @@ const main = async (): Promise<void> => {
   await plugin.nvim.setVar(lunchIpVimValue, host);
   await plugin.nvim.setVar(lunchPortVimValue, port);
 
-  const connections: { [key: number]: string[] } = {};
   const server = Express();
 
   const nextApp = next({
@@ -63,6 +62,16 @@ const main = async (): Promise<void> => {
   server.all('*', async (req: Request, res: Response) => {
     return handle(req, res);
   });
+
+  initailHttpServer(plugin, server, port);
+};
+
+const initailHttpServer = (
+  plugin: attach.Plugin,
+  server: Express.Express,
+  port: number,
+) => {
+  const connections: { [key: number]: string[] } = {};
 
   const httpServer = server.listen(port, () => {
     plugin.init({
@@ -123,7 +132,7 @@ const main = async (): Promise<void> => {
   const io = new Server(httpServer);
 
   io.on('connection', async (socket) => {
-    console.log('id: ' + socket.id + ' is connected');
+    console.log(`id: ${socket.id} is connected`);
     const bufnr = (await plugin.nvim.call('bufnr', '%')) as number;
     connections[bufnr]
       ? connections[bufnr].push(socket.id)
