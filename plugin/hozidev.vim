@@ -4,7 +4,7 @@ function! s:start_plugin() abort
 endfunction
 
 function! s:init() abort
-  au BufEnter *.{md,yaml,yml} :call s:start_plugin()
+  au BufEnter *.{md,yaml,yml,htm,html} :call s:start_plugin()
 endfunction
 
 if !has('nvim')

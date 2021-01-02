@@ -6,12 +6,15 @@ import jsYaml from 'js-yaml';
 import 'swagger-ui-react/swagger-ui.css';
 
 type RefreshContent = {
-  dataType: 'hoziDev' | 'swagger';
+  dataType: 'hoziDev' | 'swagger' | 'html';
   hoziDev?: {
     title: string;
     content: string;
   };
   swagger?: {
+    content: string;
+  };
+  html?: {
     content: string;
   };
 };
@@ -64,6 +67,14 @@ const TopPage: React.VFC = () => {
           );
         } else if (data?.dataType === 'swagger') {
           return <SwaggerUI spec={jsYaml.safeLoad(data.swagger.content)} />;
+        } else if (data?.dataType === 'html') {
+          return (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data.html.content,
+              }}
+            />
+          );
         } else {
           <div>適切なプレビューが出来ませんでした</div>;
         }

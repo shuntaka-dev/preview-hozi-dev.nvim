@@ -2,21 +2,25 @@ import path from 'path';
 
 import { Server } from 'socket.io';
 import next from 'next';
-import express, { Request, Response } from 'express';
+import Express, { Request, Response } from 'express';
 
 import { getModuleLogger } from './util/logger';
 import * as nvim from './nvim';
 import { openBrowser } from './util/open-browser';
 import * as ConvertUseCase from './use-case/convert-use-case';
-import { mdExtList, yamlExtList } from './values/ext';
+import { htmlExtList, mdExtList, yamlExtList } from './values/ext';
+import * as attach from './attach';
 
 type RefreshContent = {
-  dataType: 'hoziDev' | 'swagger';
+  dataType: 'hoziDev' | 'swagger' | 'html';
   hoziDev?: {
     title: string;
     content: string;
   };
   swagger?: {
+    content: string;
+  };
+  html?: {
     content: string;
   };
 };
@@ -47,7 +51,7 @@ const main = async (): Promise<void> => {
   await plugin.nvim.setVar(lunchPortVimValue, port);
 
   const connections: { [key: number]: string[] } = {};
-  const server = express();
+  const server = Express();
 
   const nextApp = next({
     dir: pluginRootDir,
@@ -90,6 +94,15 @@ const main = async (): Promise<void> => {
             return {
               dataType: 'swagger',
               swagger: {
+                content: bufferRows.join('\n'),
+              },
+            };
+          } else if (
+            htmlExtList.some((htmlExt) => htmlExt === previewFileExt)
+          ) {
+            return {
+              dataType: 'html',
+              html: {
                 content: bufferRows.join('\n'),
               },
             };
