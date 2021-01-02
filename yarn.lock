@@ -4181,7 +4181,7 @@ hosted-git-info@^2.1.4:
 
 "hozi-dev-content-css@git+https://github.com/hozi-dev/hozi-dev-content-css.git":
   version "0.1.0"
-  resolved "git+https://github.com/hozi-dev/hozi-dev-content-css.git#ae2e84e0e18df3e9204b0ad70a621b8c052b5dcd"
+  resolved "git+https://github.com/hozi-dev/hozi-dev-content-css.git#b18bfb24b1f17bce9403499e5c533aba7dc2820f"
 
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
