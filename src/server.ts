@@ -1,3 +1,5 @@
+import path from 'path';
+
 import { Server } from 'socket.io';
 import next from 'next';
 import express, { Request, Response } from 'express';
@@ -6,6 +8,18 @@ import { getModuleLogger } from './util/logger';
 import * as nvim from './nvim';
 import { openBrowser } from './util/open-browser';
 import * as ConvertUseCase from './use-case/convert-use-case';
+import { mdExtList, yamlExtList } from './values/ext';
+
+type RefreshContent = {
+  dataType: 'hoziDev' | 'swagger';
+  hoziDev?: {
+    title: string;
+    content: string;
+  };
+  swagger?: {
+    content: string;
+  };
+};
 
 const logger = getModuleLogger();
 
@@ -54,14 +68,38 @@ const main = async (): Promise<void> => {
       refreshContent: async (bufnr) => {
         const fileFullPath = await plugin.nvim.call('expand', '%:p');
         const bufferRows = await plugin.nvim.buffer.getLines();
-        logger.debug(`fileFullPath ${fileFullPath}`);
+        const previewFileExt = path.extname(fileFullPath);
 
-        const hoziDevContent = ConvertUseCase.convertHoziDevHtmlFromMd(
-          bufferRows.join('\n'),
-        );
+        logger.debug(`fileFullPath: ${fileFullPath}`);
+        logger.debug(`ext: ${previewFileExt}`);
+
+        const refreshContent = ((): RefreshContent => {
+          if (mdExtList.some((mdExt) => mdExt === previewFileExt)) {
+            logger.debug(`start convert to hoziDev`);
+            const hoziDevContent = ConvertUseCase.convertHoziDevHtmlFromMd(
+              bufferRows.join('\n'),
+            );
+
+            return {
+              dataType: 'hoziDev',
+              hoziDev: hoziDevContent,
+            };
+          } else if (
+            yamlExtList.some((yamlExt) => yamlExt === previewFileExt)
+          ) {
+            return {
+              dataType: 'swagger',
+              swagger: {
+                content: bufferRows.join('\n'),
+              },
+            };
+          } else {
+            throw new Error();
+          }
+        })();
 
         connections[bufnr].forEach((id) => {
-          io.to(id).emit('refresh_content', hoziDevContent);
+          io.to(id).emit('refresh_content', refreshContent);
         });
       },
     });

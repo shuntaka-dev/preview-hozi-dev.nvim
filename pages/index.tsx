@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import Head from 'next/head';
+import SwaggerUI from 'swagger-ui-react';
+import jsYaml from 'js-yaml';
+import 'swagger-ui-react/swagger-ui.css';
 
-type HoziDevContent = { title: string; content: string };
+type RefreshContent = {
+  dataType: 'hoziDev' | 'swagger';
+  hoziDev?: {
+    title: string;
+    content: string;
+  };
+  swagger?: {
+    content: string;
+  };
+};
 
 const TopPage: React.VFC = () => {
   const [socket] = useState(() => io());
-  const [dataType, setDataType] = useState<string>('');
-  const [data, setData] = useState<HoziDevContent>({
-    title: '指定されていません',
-    content: '指定されていません',
-  });
+  const [data, setData] = useState<RefreshContent>();
 
   useEffect(() => {
     socket.on('connect', () => {
@@ -19,29 +27,47 @@ const TopPage: React.VFC = () => {
     socket.on('disconnect', () => {
       console.log('connect!');
     });
-    socket.on('refresh_content', (data: HoziDevContent) => {
-      setData(data);
+    socket.on('refresh_content', (refreshContent: RefreshContent) => {
+      setData(refreshContent);
+      if (data?.dataType === 'swagger') {
+        console.log(`saggerdata: ${JSON.stringify(data)}`);
+      }
     });
   });
 
   return (
     <>
-      <Head>
-        <title>Preview|{data.title}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="shortcut icon" href="/assets/icon.png" />
-      </Head>
-      <div className="title">{data.title}</div>
-      <hr />
-      <br />
-      <div className="editor">
-        <div
-          className="hozi-dev-article-content"
-          dangerouslySetInnerHTML={{
-            __html: data.content,
-          }}
-        ></div>
-      </div>
+      {(() => {
+        if (data?.dataType === 'hoziDev') {
+          return (
+            <div>
+              <Head>
+                <title>Preview| {data.hoziDev.title}</title>
+                <meta
+                  name="viewport"
+                  content="initial-scale=1.0, width=device-width"
+                />
+                <link rel="shortcut icon" href="/assets/icon.png" />
+              </Head>
+              <div className="title">{data.hoziDev.title}</div>
+              <hr />
+              <br />
+              <div className="editor">
+                <div
+                  className="hozi-dev-article-content"
+                  dangerouslySetInnerHTML={{
+                    __html: data.hoziDev.content,
+                  }}
+                ></div>
+              </div>
+            </div>
+          );
+        } else if (data?.dataType === 'swagger') {
+          return <SwaggerUI spec={jsYaml.safeLoad(data.swagger.content)} />;
+        } else {
+          <div>適切なプレビューが出来ませんでした</div>;
+        }
+      })()}
     </>
   );
 };
