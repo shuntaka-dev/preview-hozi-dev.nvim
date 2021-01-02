@@ -9,14 +9,14 @@ import matter from 'gray-matter';
 import loadLanguages from 'prismjs/components/';
 
 import { getModuleLogger } from '../util/logger';
+
 const logger = getModuleLogger();
 
-type NvimBuffer = {
-  bufferRows: string[];
-  fileFullPath: string;
-};
+export const convertHoziDevHtmlFromMd = (
+  markdownString: string,
+): { title: string; content: string } => {
+  const markdownExcludeMatter = matter(markdownString);
 
-const convertHtmlFromMarkdown = (markdownString: string): string => {
   const md = new MarkdownIt({
     linkify: true,
     breaks: true,
@@ -63,19 +63,7 @@ const convertHtmlFromMarkdown = (markdownString: string): string => {
     return self.renderToken(tokens, idx, options);
   };
 
-  return md.render(markdownString);
-};
-
-export const convert = (
-  nvimBuffer: NvimBuffer,
-): { title: string; content: string } => {
-  logger.debug('convert start');
-  const buffer = nvimBuffer.bufferRows.join('\n');
-
-  const markdownExcludeMatter = matter(buffer);
-  logger.debug('convert html start');
-  const html = convertHtmlFromMarkdown(markdownExcludeMatter.content);
-  logger.debug('convert html end');
+  const html = md.render(markdownExcludeMatter.content);
 
   return {
     title: markdownExcludeMatter.data.title,

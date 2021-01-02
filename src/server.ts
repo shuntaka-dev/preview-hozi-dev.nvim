@@ -5,7 +5,7 @@ import express, { Request, Response } from 'express';
 import { getModuleLogger } from './util/logger';
 import * as nvim from './nvim';
 import { openBrowser } from './util/open-browser';
-import * as ConvertHoziDevContent from './util/convert-hozi-dev-content';
+import * as ConvertUseCase from './use-case/convert-use-case';
 
 const logger = getModuleLogger();
 
@@ -54,10 +54,11 @@ const main = async (): Promise<void> => {
       refreshContent: async (bufnr) => {
         const fileFullPath = await plugin.nvim.call('expand', '%:p');
         const bufferRows = await plugin.nvim.buffer.getLines();
-        const hoziDevContent = ConvertHoziDevContent.convert({
-          bufferRows: bufferRows,
-          fileFullPath: fileFullPath,
-        });
+        logger.debug(`fileFullPath ${fileFullPath}`);
+
+        const hoziDevContent = ConvertUseCase.convertHoziDevHtmlFromMd(
+          bufferRows.join('\n'),
+        );
 
         connections[bufnr].forEach((id) => {
           io.to(id).emit('refresh_content', hoziDevContent);

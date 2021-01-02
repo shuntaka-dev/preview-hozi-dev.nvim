@@ -6,6 +6,7 @@ type HoziDevContent = { title: string; content: string };
 
 const TopPage: React.VFC = () => {
   const [socket] = useState(() => io());
+  const [dataType, setDataType] = useState<string>('');
   const [data, setData] = useState<HoziDevContent>({
     title: '指定されていません',
     content: '指定されていません',
