@@ -1,8 +1,11 @@
 let g:hozidev_root_dir = expand('<sfile>:h:h:h')
+" let g:hozidev_host = '127.0.0.1'
+let g:hozidev_lunch_ip = 'localhost'
+let g:hozidev_lunch_port = 9126
 
 function! hozidev#util#job_command()
   let node_path = get(g:, 'hozidev_node_path', 'node') 
-  return [node_path] + [g:hozidev_root_dir . '/app/server.js']
+  return [node_path] + [g:hozidev_root_dir . '/app/server.js', g:hozidev_lunch_port]
 endfunction
 
 function! hozidev#util#echo_messages(hl, msgs)

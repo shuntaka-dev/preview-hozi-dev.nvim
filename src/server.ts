@@ -27,28 +27,15 @@ type RefreshContent = {
 
 const logger = getModuleLogger();
 
-const defaultHost = '127.0.0.1';
-const defaultPort = 9126;
-const lunchIpVimValue = 'hozidev_lunch_ip';
-const lunchPortVimValue = 'hozidev_lunch_port';
 const pluginRootVimValue = 'hozidev_root_dir';
 
 const main = async (): Promise<void> => {
   const plugin = await nvim.initPlugin();
-  const host = await (async () => {
-    const hozidevLunchIp = await plugin.nvim.getVar(lunchIpVimValue);
-    return hozidevLunchIp ?? defaultHost;
-  })();
-  const port = await (async () => {
-    const hozidevLunchPort = await plugin.nvim.getVar(lunchPortVimValue);
-    return hozidevLunchPort != null ? Number(hozidevLunchPort) : defaultPort;
-  })();
+  const port = Number(process.argv[2] ?? 9999);
+  logger.debug(`port: ${port}`);
   const pluginRootDir = (await plugin.nvim.getVar(
     pluginRootVimValue,
   )) as string;
-
-  await plugin.nvim.setVar(lunchIpVimValue, host);
-  await plugin.nvim.setVar(lunchPortVimValue, port);
 
   const server = Express();
 

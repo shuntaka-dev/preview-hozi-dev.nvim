@@ -53,3 +53,12 @@ function! hozidev#rpc#refresh_content()
   endif
 endfunction
 
+function! hozidev#rpc#restart_server()
+  if exists('g:hozidev_node_channel_id') && g:hozidev_node_channel_id !=# -1
+    echomsg 'already used port.change to port to restart server'
+    let g:hozidev_lunch_port += 1
+    call hozidev#rpc#start_server()
+  endif
+endfunction
+
+
