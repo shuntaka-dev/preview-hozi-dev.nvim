@@ -4179,9 +4179,10 @@ hosted-git-info@^2.1.4:
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
   integrity sha512-f/wzC2QaWBs7t9IYqB4T3sR1xviIViXJRJTWBlx2Gf3g0Xi5vI7Yy4koXQ1c9OYDGHN9sBy1DQ2AB8fqZBWhUg==
 
-"hozi-dev-content-css@git+https://github.com/hozi-dev/hozi-dev-content-css.git":
-  version "0.1.0"
-  resolved "git+https://github.com/hozi-dev/hozi-dev-content-css.git#b18bfb24b1f17bce9403499e5c533aba7dc2820f"
+hozi-dev-content-css@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/hozi-dev-content-css/-/hozi-dev-content-css-0.0.2.tgz#37fbc75ab8e25a8c06605574865be51351f2b641"
+  integrity sha512-gC34w/3Keomw7CZxgnGyho4I6LM1E5/wAFrqhR2mNLjX630UZ+XU4QkOoWUkJloOHX/Yz5U0gxfv4ahqHQ0nhA==
 
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"

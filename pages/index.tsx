@@ -51,6 +51,10 @@ const TopPage: React.VFC = () => {
                   content="initial-scale=1.0, width=device-width"
                 />
                 <link rel="shortcut icon" href="/assets/icon.png" />
+                <link
+                  rel="stylesheet"
+                  href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css"
+                />
               </Head>
               <div className="title">{data.hoziDev.title}</div>
               <hr />
