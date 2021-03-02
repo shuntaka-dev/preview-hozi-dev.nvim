@@ -401,19 +401,20 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.1.1.tgz#9daf5745156fd84b8e9889a2dc721f0c58e894aa"
   integrity sha512-CAEbWH7OIur6jEOzaai83jq3FmKmv4PmX1JYfs9IrYcGEVI/lyL1EXJGCj7eFVJ0bg5QR8LMxBlEtA+xKiLpFw==
 
-"@hozi-dev/content-css@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.0.1.tgz#aced95561258d13ce29e9ae1280dce422af9a902"
-  integrity sha512-2m12in6LxM5JaDIvsrcrnIJnkREcxJyIsqdxjG7wVDsh0UPtDQEXu5I8Vi6L3oScpaXhuCqQrLL4sQ5Xaw3iZg==
+"@hozi-dev/content-css@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.1.5.tgz#07f1f049510a92e690dbc778de691346746d699d"
+  integrity sha512-9x+zfOW4JkbuJgNowDC1vFqz26B6bQ3oExDl2Grfs3io3mJc3amI8eZlXwh7Cp8dhx1+qKl0TTITFHxPY7APxw==
 
-"@hozi-dev/markdown-to-html@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@hozi-dev/markdown-to-html/-/markdown-to-html-0.0.1.tgz#30a179d64d595307f6caca95b6b1d21a1b7b5a68"
-  integrity sha512-MOHIy472DsdiDPJP7Xl2PftfEWtrxI6F63YhHwDy7H55BiMBSbmyA94X1BcAIFaAFyqroG5UtvOPVlrizdUzxA==
+"@hozi-dev/markdown-to-html@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@hozi-dev/markdown-to-html/-/markdown-to-html-0.1.0.tgz#8db0991aa2c1255517dcec0e65f12ad8b49403a6"
+  integrity sha512-TtbK2sxParIQ6zJ6bJgBaL4kLxDIL7LWRv5T2W+6oRodlVU2XOaQvfxgcSqBFytvwv4CdAEKoS3GZmMmDkI72Q==
   dependencies:
     markdown-it "12.0.4"
     markdown-it-anchor "7.0.0"
     markdown-it-br "1.0.0"
+    markdown-it-image-lazy-loading "^1.0.2"
     markdown-it-imsize "2.0.1"
     prismjs "1.23.0"
 
@@ -5602,6 +5603,11 @@ markdown-it-br@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-br/-/markdown-it-br-1.0.0.tgz#a9e9e953846da45c8977cac0a63b5b58fc6d595d"
   integrity sha1-qenpU4RtpFyJd8rApjtbWPxtWV0=
+
+markdown-it-image-lazy-loading@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/markdown-it-image-lazy-loading/-/markdown-it-image-lazy-loading-1.0.2.tgz#fbacba9818a9657286295b2a9a15ec722b27d550"
+  integrity sha512-FBGKcF+zDSE7HEN9rGar6+36RtO3ozakqNLpbl2uL91DZQEIkXxN8uUZXJGCjvQL4O5f9IxeP5lagxX3FZ2SgA==
 
 markdown-it-imsize@2.0.1:
   version "2.0.1"
