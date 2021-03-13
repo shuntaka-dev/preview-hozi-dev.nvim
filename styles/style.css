@@ -11,8 +11,10 @@ body {
 }
 
 .editor {
-  display: flex;
-  justify-content: center;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 100px;
 }
 
 .hozi-dev-article-content {

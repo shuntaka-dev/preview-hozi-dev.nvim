@@ -56,10 +56,10 @@ const TopPage: React.VFC = () => {
                   href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css"
                 />
               </Head>
-              <div className="title">{data.hoziDev.title}</div>
-              <hr />
-              <br />
               <div className="editor">
+                <div className="title">{data.hoziDev.title}</div>
+                <hr />
+                <br />
                 <div
                   className="hozi-dev-article-content"
                   dangerouslySetInnerHTML={{
