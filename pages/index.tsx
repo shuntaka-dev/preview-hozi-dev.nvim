@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import Head from 'next/head';
-import SwaggerUI from 'swagger-ui-react';
-import jsYaml from 'js-yaml';
+import tocbot from 'tocbot';
+
 import 'swagger-ui-react/swagger-ui.css';
+import styles from '../styles/index.module.scss';
 
 type RefreshContent = {
   dataType: 'hoziDev' | 'swagger' | 'html';
@@ -32,57 +33,62 @@ const TopPage: React.VFC = () => {
     });
     socket.on('refresh_content', (refreshContent: RefreshContent) => {
       setData(refreshContent);
-      if (data?.dataType === 'swagger') {
-        console.log(`saggerdata: ${JSON.stringify(data)}`);
-      }
     });
-  });
+
+    if (data?.hoziDev?.content) {
+      tocbot.init({
+        tocSelector: '.toc',
+        contentSelector: `.hozi-dev-article-content`,
+        headingSelector: 'h1, h2, h3',
+        scrollSmooth: false,
+        activeLinkClass: styles.isActiveLi,
+        listClass: styles.listClass,
+        headingsOffset: -110,
+        listItemClass: styles.listItemClass,
+        collapsibleClass: styles.collapsibleClass,
+        isCollapsedClass: styles.isCollapsedClass,
+      });
+    }
+  }, [data]);
 
   return (
     <>
-      {(() => {
-        if (data?.dataType === 'hoziDev') {
-          return (
-            <div>
-              <Head>
-                <title>Preview| {data.hoziDev.title}</title>
-                <meta
-                  name="viewport"
-                  content="initial-scale=1.0, width=device-width"
-                />
-                <link rel="shortcut icon" href="/assets/icon.png" />
-                <link
-                  rel="stylesheet"
-                  href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css"
-                />
-              </Head>
-              <div className="editor">
-                <div className="title">{data.hoziDev.title}</div>
+      {data?.hoziDev?.content
+        ? (() => {
+            return (
+              <div>
+                <Head>
+                  <title>Live|{data.hoziDev.title}</title>
+                  <meta
+                    name="viewport"
+                    content="initial-scale=1.0, width=device-width"
+                  />
+                  <link rel="shortcut icon" href="/assets/icon.png" />
+                  <link
+                    rel="stylesheet"
+                    href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css"
+                  />
+                </Head>
+                <div className={styles.title}>{data?.hoziDev?.title}</div>
                 <hr />
                 <br />
-                <div
-                  className="hozi-dev-article-content"
-                  dangerouslySetInnerHTML={{
-                    __html: data.hoziDev.content,
-                  }}
-                ></div>
+                <div className={styles.editor}>
+                  <div className={styles.content}>
+                    <div
+                      className="hozi-dev-article-content"
+                      dangerouslySetInnerHTML={{
+                        __html: data.hoziDev.content,
+                      }}
+                    ></div>
+                  </div>
+                  <div className={styles.rightSideBar}>
+                    <div className="toc" id={styles.toc}></div>
+                  </div>
+                </div>
               </div>
-            </div>
-          );
-        } else if (data?.dataType === 'swagger') {
-          return <SwaggerUI spec={jsYaml.safeLoad(data.swagger.content)} />;
-        } else if (data?.dataType === 'html') {
-          return (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: data.html.content,
-              }}
-            />
-          );
-        } else {
-          <div>適切なプレビューが出来ませんでした</div>;
-        }
-      })()}
+            );
+          })()
+        : 'データが存在しません'}
     </>
   );
 };
