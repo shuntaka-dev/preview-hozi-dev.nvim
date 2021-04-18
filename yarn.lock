@@ -401,21 +401,24 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.1.1.tgz#9daf5745156fd84b8e9889a2dc721f0c58e894aa"
   integrity sha512-CAEbWH7OIur6jEOzaai83jq3FmKmv4PmX1JYfs9IrYcGEVI/lyL1EXJGCj7eFVJ0bg5QR8LMxBlEtA+xKiLpFw==
 
-"@hozi-dev/content-css@0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.1.6.tgz#44cb700baed497782f41a86cf9ff929db2f56635"
-  integrity sha512-vOGB9/0KIhHe/GXZgVu9KEV8OCeuBd9bk3Rte7SB+UeEpNZR+gvUH53kA7sFy53CvabVkTFk74bNV/t7t/T3Og==
+"@hozi-dev/content-css@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.4.0.tgz#a113c059eb8c2eba04446f7a6e13da6194a192d8"
+  integrity sha512-P5gyg8CaC+RODqvYY7DfmGa3xvX5R2QO79wO91zBDE4yI01NVVpk4e9tjEY5gyQ9vjdQ+iDMAVIcAe7mTAOZMA==
 
-"@hozi-dev/markdown-to-html@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@hozi-dev/markdown-to-html/-/markdown-to-html-0.1.1.tgz#7e2132a7c8bf490f70b062562a78140291769682"
-  integrity sha512-k+jQnUmni5KlDf95v+fG/NivUvGPi1OI9ypjDsD6VJLWdqReL34bPnJceIwPH5zrMAPN+o++wdDIBaEBsAHFEA==
+"@hozi-dev/markdown-to-html@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@hozi-dev/markdown-to-html/-/markdown-to-html-0.3.0.tgz#787ef2e6b0c1f645b72d1de5e0eeba8aa6628618"
+  integrity sha512-rmCirL02tn4U0pfSjb6SW8wlBZID1Vtfx6YYJ2PbYOG8Pmo1blAAMSlT4UhkyCE9cKQEO46pbgrxgVr6Zi047w==
   dependencies:
+    "@types/markdown-it-container" "2.0.3"
     markdown-it "12.0.4"
     markdown-it-anchor "7.0.0"
     markdown-it-br "1.0.0"
-    markdown-it-image-lazy-loading "^1.0.2"
+    markdown-it-container "3.0.0"
+    markdown-it-image-lazy-loading "1.0.2"
     markdown-it-imsize "2.0.1"
+    markdown-it-playground "0.0.5"
     prismjs "1.23.0"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
@@ -810,6 +813,11 @@
   dependencies:
     "@types/unist" "*"
 
+"@types/highlight.js@^9.7.0":
+  version "9.12.4"
+  resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.12.4.tgz#8c3496bd1b50cc04aeefd691140aa571d4dbfa34"
+  integrity sha512-t2szdkwmg2JJyuCM20e8kR2X59WCE5Zkl4bzm1u1Oukjm79zpbiAv+QjnwLnuuV0WHEcX2NgUItu0pAMKuOPww==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz#4ba8ddb720221f432e443bd5f9117fd22cfd4762"
@@ -851,6 +859,32 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
+
+"@types/linkify-it@*":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/linkify-it/-/linkify-it-3.0.1.tgz#4d26a9efe3aa2caf829234ec5a39580fc88b6001"
+  integrity sha512-pQv3Sygwxxh6jYQzXaiyWDAHevJqWtqDUv6t11Sa9CPGiXny66II7Pl6PR8QO5OVysD6HYOkHMeBgIjLnk9SkQ==
+
+"@types/markdown-it-container@2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@types/markdown-it-container/-/markdown-it-container-2.0.3.tgz#436de4c019d7d71b60f759037fd4d03611569eb8"
+  integrity sha512-ouJluaEGWV7clX7NVMRjkQfS/a11hFXDG1U04l8vrS1P2UgAFPlgMpk1rAPgK0MWU1NhcBYWVW7w/SpgePLs0A==
+  dependencies:
+    "@types/markdown-it" "*"
+
+"@types/markdown-it@*":
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/@types/markdown-it/-/markdown-it-12.0.1.tgz#8391e19fea4796ff863edda55800c7e669beb358"
+  integrity sha512-mHfT8j/XkPb1uLEfs0/C3se6nd+webC2kcqcy8tgcVr0GDEONv/xaQzAN+aQvkxQXk/jC0Q6mPS+0xhFwRF35g==
+  dependencies:
+    "@types/highlight.js" "^9.7.0"
+    "@types/linkify-it" "*"
+    "@types/mdurl" "*"
+
+"@types/mdurl@*":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/mdurl/-/mdurl-1.0.2.tgz#e2ce9d83a613bacf284c7be7d491945e39e1f8e9"
+  integrity sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==
 
 "@types/mime@*":
   version "2.0.3"
@@ -5624,7 +5658,12 @@ markdown-it-br@1.0.0:
   resolved "https://registry.yarnpkg.com/markdown-it-br/-/markdown-it-br-1.0.0.tgz#a9e9e953846da45c8977cac0a63b5b58fc6d595d"
   integrity sha1-qenpU4RtpFyJd8rApjtbWPxtWV0=
 
-markdown-it-image-lazy-loading@^1.0.2:
+markdown-it-container@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-container/-/markdown-it-container-3.0.0.tgz#1d19b06040a020f9a827577bb7dbf67aa5de9a5b"
+  integrity sha512-y6oKTq4BB9OQuY/KLfk/O3ysFhB3IMYoIWhGJEidXt1NQFocFK2sA2t0NYZAMyMShAGL6x5OPIbrmXPIqaN9rw==
+
+markdown-it-image-lazy-loading@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/markdown-it-image-lazy-loading/-/markdown-it-image-lazy-loading-1.0.2.tgz#fbacba9818a9657286295b2a9a15ec722b27d550"
   integrity sha512-FBGKcF+zDSE7HEN9rGar6+36RtO3ozakqNLpbl2uL91DZQEIkXxN8uUZXJGCjvQL4O5f9IxeP5lagxX3FZ2SgA==
@@ -5633,6 +5672,11 @@ markdown-it-imsize@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/markdown-it-imsize/-/markdown-it-imsize-2.0.1.tgz#cca0427905d05338a247cb9ca9d968c5cddd5170"
   integrity sha1-zKBCeQXQUziiR8ucqdloxc3dUXA=
+
+markdown-it-playground@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/markdown-it-playground/-/markdown-it-playground-0.0.5.tgz#886b3ea361af7d0f5c5a71e61684f867b34e11c3"
+  integrity sha1-iGs+o2GvfQ9cWnHmFoT4Z7NOEcM=
 
 markdown-it@12.0.4:
   version "12.0.4"

@@ -74,12 +74,14 @@ const TopPage: React.VFC = () => {
                 <br />
                 <div className={styles.editor}>
                   <div className={styles.content}>
-                    <div
-                      className="hozi-dev-article-content"
-                      dangerouslySetInnerHTML={{
-                        __html: data.hoziDev.content,
-                      }}
-                    ></div>
+                    <div className="hozi-dev-article-content">
+                      <div
+                        className="hozi-dev-article-content-light"
+                        dangerouslySetInnerHTML={{
+                          __html: data.hoziDev.content,
+                        }}
+                      ></div>
+                    </div>
                   </div>
                   <div className={styles.rightSideBar}>
                     <div className="toc" id={styles.toc}></div>
