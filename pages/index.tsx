@@ -43,7 +43,7 @@ const TopPage: React.VFC = () => {
         scrollSmooth: false,
         activeLinkClass: styles.isActiveLi,
         listClass: styles.listClass,
-        headingsOffset: -110,
+        //headingsOffset: -200,
         listItemClass: styles.listItemClass,
         collapsibleClass: styles.collapsibleClass,
         isCollapsedClass: styles.isCollapsedClass,
