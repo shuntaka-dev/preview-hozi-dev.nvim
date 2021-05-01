@@ -24,45 +24,72 @@
 
 #toc {
   background: var(--article-area-color);
+  max-height: 700px;
+  overflow-y: auto; // 縦
+  max-width: 296px;
+  overflow-x: hidden;
+  white-space: nowrap;
   position: sticky;
   top: 112px;
   border-radius: 10px;
   padding: 8px;
   line-height: 1.6em;
-  .listClass {
+  >ol:before {
+    position: absolute;
     content: "";
+    width: 2px;
+    background: var(--toc-list-color);
+    top: 17px;
+    bottom: 8px;
+    left: 10px;
+    border-radius: 0 0 5px 5px;
   }
-  .listItemClass {
-    padding-left: 0.6em;
+  ol li {
+    position: relative;
+    color: var(--toc-list-text-color);
+  }
+  ol li:before {
+    position: absolute;
+    content: "",;
+    top: 8px;
+    height: 8px;
+    width: 8px;
+    left: -1px;
+    border-radius: 50%;
+    background: var(--toc-list-color);
+  }
+  ol li:global(.is-active-li):before {
+    background: var(--toc-list-color-active);
+  }
+  ol li:global(.is-active-li) {
+    color: var(--toc-list-color-active);
+  }
+  ol ol li:before {
+    position: absolute;
+    content: "",;
+    height: 6px;
+    width: 6px;
+    left: 0px;
+    border-radius: 50%;
+    background: var(--toc-list-color);
+  }
+  ol ol ol li:before {
+    position: absolute;
+    content: "",;
+    height: 4px;
+    width: 4px;
+    left: 1px;
+    border-radius: 50%;
+    background: var(--toc-list-color);
   }
   a {
     position: relative;
     padding-left: 0.8em;
-  }
-  a:after {
-    position: absolute;
-    content: "";
-    height: 6px;
-    width: 6px;
-    left: 0;
-    top: 6px;
-    border-radius: 50%;
-    background: var(--toc-list-color);
-  }
-  .collapsibleClass {
-    content: "";
-  }
-  .isCollapsedClass {
-    content: "";
-  }
-  .isActiveLi {
-    color: var(--toc-list-color-active);
-  }
-  .isActiveLi:after {
-    background: var(--toc-list-color-active);
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
   }
 }
-
 
 .content {
   width: calc(100% - 312px);

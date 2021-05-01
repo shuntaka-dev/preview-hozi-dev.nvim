@@ -16,7 +16,8 @@ body {
   --text-color: #525457;
   --article-record-underline: rgba(162,177,202,0.3);
   --article-area-color: #FFF;
-  --toc-list-color: #525457;
-  --toc-list-color-active: #6686ff;
+  --toc-list-color: rgba(162,177,202,0.3);
+  --toc-list-text-color: #57595b87;
+  --toc-list-color-active: #525457;
 }
 

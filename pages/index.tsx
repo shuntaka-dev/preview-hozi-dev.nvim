@@ -41,12 +41,7 @@ const TopPage: React.VFC = () => {
         contentSelector: `.hozi-dev-article-content`,
         headingSelector: 'h1, h2, h3',
         scrollSmooth: false,
-        activeLinkClass: styles.isActiveLi,
-        listClass: styles.listClass,
         //headingsOffset: -200,
-        listItemClass: styles.listItemClass,
-        collapsibleClass: styles.collapsibleClass,
-        isCollapsedClass: styles.isCollapsedClass,
       });
     }
   }, [data]);

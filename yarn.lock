@@ -401,10 +401,10 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.1.1.tgz#9daf5745156fd84b8e9889a2dc721f0c58e894aa"
   integrity sha512-CAEbWH7OIur6jEOzaai83jq3FmKmv4PmX1JYfs9IrYcGEVI/lyL1EXJGCj7eFVJ0bg5QR8LMxBlEtA+xKiLpFw==
 
-"@hozi-dev/content-css@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.4.0.tgz#a113c059eb8c2eba04446f7a6e13da6194a192d8"
-  integrity sha512-P5gyg8CaC+RODqvYY7DfmGa3xvX5R2QO79wO91zBDE4yI01NVVpk4e9tjEY5gyQ9vjdQ+iDMAVIcAe7mTAOZMA==
+"@hozi-dev/content-css@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.4.1.tgz#a7cd3145b1c87a3a024eb21a6876a7474700d8d6"
+  integrity sha512-z4Naz5n5rn7MvK+bPYjrwiOg6HzWx4L6p4nQM5/MVspE5Z/zKXqwb0b+m/qO7WM7brNShbSaWBrcmqpjBuA4AA==
 
 "@hozi-dev/markdown-to-html@0.3.0":
   version "0.3.0"

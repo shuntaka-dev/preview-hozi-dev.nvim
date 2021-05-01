@@ -43,7 +43,7 @@
     "typescript": "4.1.3"
   },
   "dependencies": {
-    "@hozi-dev/content-css": "0.4.0",
+    "@hozi-dev/content-css": "0.4.1",
     "@hozi-dev/markdown-to-html": "0.3.0",
     "child_process": "1.0.2",
     "express": "4.17.1",
