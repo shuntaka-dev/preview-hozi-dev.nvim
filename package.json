@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@hozi-dev/content-css": "0.4.1",
-    "@hozi-dev/markdown-to-html": "0.3.0",
+    "@hozi-dev/markdown-to-html": "0.5.0",
     "child_process": "1.0.2",
     "express": "4.17.1",
     "gray-matter": "4.0.2",

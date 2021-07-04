@@ -406,10 +406,10 @@
   resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.4.1.tgz#a7cd3145b1c87a3a024eb21a6876a7474700d8d6"
   integrity sha512-z4Naz5n5rn7MvK+bPYjrwiOg6HzWx4L6p4nQM5/MVspE5Z/zKXqwb0b+m/qO7WM7brNShbSaWBrcmqpjBuA4AA==
 
-"@hozi-dev/markdown-to-html@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@hozi-dev/markdown-to-html/-/markdown-to-html-0.3.0.tgz#787ef2e6b0c1f645b72d1de5e0eeba8aa6628618"
-  integrity sha512-rmCirL02tn4U0pfSjb6SW8wlBZID1Vtfx6YYJ2PbYOG8Pmo1blAAMSlT4UhkyCE9cKQEO46pbgrxgVr6Zi047w==
+"@hozi-dev/markdown-to-html@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@hozi-dev/markdown-to-html/-/markdown-to-html-0.5.0.tgz#4b036797f58b9906cfbab4816b44ab917e0cd615"
+  integrity sha512-cY1V/BrvpRuASVAl/jed8e8edgT2+7NpQuTJ1ZLrdMtvPiYbTR+BZpoJbdJvQQfrKEk/U6AFkkyiRRikgCV7TQ==
   dependencies:
     "@types/markdown-it-container" "2.0.3"
     markdown-it "12.0.4"
@@ -418,6 +418,7 @@
     markdown-it-container "3.0.0"
     markdown-it-image-lazy-loading "1.0.2"
     markdown-it-imsize "2.0.1"
+    markdown-it-plantuml "1.4.1"
     markdown-it-playground "0.0.5"
     prismjs "1.23.0"
 
@@ -5672,6 +5673,11 @@ markdown-it-imsize@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/markdown-it-imsize/-/markdown-it-imsize-2.0.1.tgz#cca0427905d05338a247cb9ca9d968c5cddd5170"
   integrity sha1-zKBCeQXQUziiR8ucqdloxc3dUXA=
+
+markdown-it-plantuml@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/markdown-it-plantuml/-/markdown-it-plantuml-1.4.1.tgz#3bd5e7d92eaa5c6c68eb29802f7b46a8e05ca998"
+  integrity sha512-13KgnZaGYTHBp4iUmGofzZSBz+Zj6cyqfR0SXUIc9wgWTto5Xhn7NjaXYxY0z7uBeTUMlc9LMQq5uP4OM5xCHg==
 
 markdown-it-playground@0.0.5:
   version "0.0.5"
