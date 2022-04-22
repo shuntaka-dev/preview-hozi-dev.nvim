@@ -401,15 +401,15 @@
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.1.1.tgz#9daf5745156fd84b8e9889a2dc721f0c58e894aa"
   integrity sha512-CAEbWH7OIur6jEOzaai83jq3FmKmv4PmX1JYfs9IrYcGEVI/lyL1EXJGCj7eFVJ0bg5QR8LMxBlEtA+xKiLpFw==
 
-"@hozi-dev/content-css@0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.4.1.tgz#a7cd3145b1c87a3a024eb21a6876a7474700d8d6"
-  integrity sha512-z4Naz5n5rn7MvK+bPYjrwiOg6HzWx4L6p4nQM5/MVspE5Z/zKXqwb0b+m/qO7WM7brNShbSaWBrcmqpjBuA4AA==
-
-"@hozi-dev/markdown-to-html@0.5.0":
+"@hozi-dev/content-css@0.5.0":
   version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@hozi-dev/markdown-to-html/-/markdown-to-html-0.5.0.tgz#4b036797f58b9906cfbab4816b44ab917e0cd615"
-  integrity sha512-cY1V/BrvpRuASVAl/jed8e8edgT2+7NpQuTJ1ZLrdMtvPiYbTR+BZpoJbdJvQQfrKEk/U6AFkkyiRRikgCV7TQ==
+  resolved "https://registry.yarnpkg.com/@hozi-dev/content-css/-/content-css-0.5.0.tgz#66a2b9f1b7ac1cd98cb3397ae53ade668dbd6ea3"
+  integrity sha512-oVjfoGxJUzOV+QZIstEJi2XX8yBEemSiVXQklLTevfqFQm34G9KD9n/LWQUOD43MdxFwhVmMiPj9bJKjmKkTRw==
+
+"@hozi-dev/markdown-to-html@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@hozi-dev/markdown-to-html/-/markdown-to-html-0.9.0.tgz#cc273514310ad11272247e565d1c40cdd27ef305"
+  integrity sha512-bpApLTt44SZerfOZv8WEdaCw3TiT0lktt/0djj48NryJ3kxxWIx2Fs8Eb5MncYZeCM3+IVwrXnX6npU21i6ekg==
   dependencies:
     "@types/markdown-it-container" "2.0.3"
     markdown-it "12.0.4"
