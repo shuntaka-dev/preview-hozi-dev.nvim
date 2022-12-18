@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2021",
+    "target": "es2017",
     "module": "commonjs",
+    "lib": ["es2017", "es2018"],
     "declaration": true,
     "outDir": "app",
     "strict": true,
@@ -20,7 +21,11 @@
     "esModuleInterop": true,
     "strictNullChecks": false,
     "strictFunctionTypes": false,
+    "skipLibCheck": true,
     "plugins": []
   },
-  "include": ["src"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": ["src/**/*"]
 }
