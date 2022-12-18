@@ -6,9 +6,7 @@ export const convertHoziDevHtmlFromMd = (
 ): { title: string; content: string } => {
   const markdownExcludeMatter = matter(markdownString);
 
-  const html = MarkdownToHtml.convertToHoziDevHtml(
-    markdownExcludeMatter.content,
-  );
+  const html = MarkdownToHtml.default(markdownExcludeMatter.content);
 
   return {
     title: markdownExcludeMatter.data.title,
